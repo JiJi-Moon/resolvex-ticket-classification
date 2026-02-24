@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="relative text-center py-16">
+    <div class="absolute inset-0 -z-10">
+        <div class="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[500px] h-[500px] 
+                    bg-indigo-500/20 rounded-full blur-3xl"></div>
+    </div>
+
+    <h1 class="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-blue-600 
+               bg-clip-text text-transparent">
+        Team Management
+    </h1>
+
+    <p class="text-slate-600 mt-4 text-sm max-w-2xl mx-auto">
+        View team credentials and performance metrics.
+    </p>
+</section>
+
+<div class="max-w-5xl mx-auto space-y-8">
+
+{% for team in teams %}
+
+<div class="bg-white p-8 rounded-3xl shadow-lg border">
+
+    <!-- Header -->
+    <div class="flex justify-between items-center">
+
+        <div>
+            <h2 class="text-lg font-semibold">
+                {{ team.team_id }}
+            </h2>
+            <p class="text-sm text-slate-500">
+                Department: {{ team.department }}
+            </p>
+        </div>
+
+        <button onclick="toggleTeam('{{ team.team_id }}')"
+                class="text-sm px-4 py-2 bg-indigo-600 text-white rounded-xl">
+            View Details
+        </button>
+
+    </div>
+
+    <!-- Expandable Content -->
+    <div id="team-{{ team.team_id }}" class="hidden mt-6 space-y-4">
+
+        <div class="text-sm">
+            <p><strong>Password:</strong> {{ team.password }}</p>
+            <p><strong>Created At:</strong> {{ team.created_at }}</p>
+        </div>
+
+        {% if team.kpis %}
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+            {% for row in team.kpis %}
+            <div class="bg-slate-50 p-4 rounded-xl text-center border">
+                <p class="text-xs text-slate-500">{{ row.status }}</p>
+                <p class="text-lg font-semibold">{{ row.count }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<script>
+function toggleTeam(id) {
+    const el = document.getElementById("team-" + id);
+    el.classList.toggle("hidden");
+}
+</script>
+
+{% endblock %}

@@ -1,0 +1,315 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="relative text-center py-16">
+    <div class="absolute inset-0 -z-10">
+        <div class="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[500px] h-[500px] 
+                    bg-indigo-500/20 rounded-full blur-3xl"></div>
+    </div>
+
+    <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 
+               bg-clip-text text-transparent">
+        {% if role == "admin" %}
+            All Tickets
+        {% elif role in ["team_admin", "team_member"] %}
+            Assigned Tickets
+        {% else %}
+            My Tickets
+        {% endif %}
+    </h1>
+
+    <p class="text-slate-600 mt-4 text-sm max-w-2xl mx-auto">
+        {% if role == "admin" %}
+            Assign tickets to appropriate teams.
+        {% elif role in ["team_admin", "team_member"] %}
+            Manage and update assigned tickets.
+        {% else %}
+            Track and monitor your submitted tickets.
+        {% endif %}
+    </p>
+</section>
+
+<div class="max-w-6xl mx-auto space-y-10">
+
+<!-- ================= SEARCH + FILTER BAR ================= -->
+
+<div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200">
+
+    <form method="GET"
+          action="{{ url_for('view_tickets') }}"
+          class="grid grid-cols-1 md:grid-cols-6 gap-4">
+
+        <label for="search-input" class="sr-only">
+            Search tickets by title, ID, or username
+        </label>
+        <input type="text"
+               id="search-input"
+               name="search"
+               value="{{ request.args.get('search', '') }}"
+               placeholder="🔍 Search by title / ID / username"
+               class="col-span-2 border rounded-xl px-4 py-2 text-sm">
+
+        <label for="status-filter" class="sr-only">Filter by status</label>
+        <select id="status-filter"
+                name="status"
+                class="border rounded-xl px-3 py-2 text-sm">
+            <option value="">All Status</option>
+            {% for s in ['Open','In Progress','On Hold','Resolved','Reopened','Closed'] %}
+                <option value="{{ s }}"
+                    {% if request.args.get('status') == s %}selected{% endif %}>
+                    {{ s }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <label for="priority-filter" class="sr-only">Filter by priority</label>
+        <select id="priority-filter"
+                name="priority"
+                class="border rounded-xl px-3 py-2 text-sm">
+            <option value="">All Priority</option>
+            {% for p in ['High','Medium','Low'] %}
+                <option value="{{ p }}"
+                    {% if request.args.get('priority') == p %}selected{% endif %}>
+                    {{ p }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <label for="sort-filter" class="sr-only">Sort tickets</label>
+        <select id="sort-filter"
+                name="sort"
+                class="border rounded-xl px-3 py-2 text-sm">
+            <option value="">Sort</option>
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
+            <option value="priority">Priority</option>
+            <option value="status">Status</option>
+        </select>
+
+        <button type="submit"
+                class="bg-indigo-600 text-white rounded-xl px-4 py-2 text-sm">
+            Apply
+        </button>
+
+    </form>
+</div>
+
+{% for t in tickets %}
+{% set status = t.status %}
+
+<div class="bg-white/90 backdrop-blur-md p-8 rounded-3xl 
+            shadow-lg border border-slate-200 hover:shadow-xl transition">
+
+    <div class="flex justify-between items-start mb-6">
+
+        <div>
+            <h3 class="text-lg font-semibold text-slate-800">
+                {{ t.title }}
+            </h3>
+
+            <!-- Priority Badge -->
+            <div class="flex gap-2 mt-2">
+                {% if t.priority == 'High' %}
+                    <span class="text-xs px-3 py-1 rounded-full bg-rose-100 text-rose-700 font-semibold">
+                        🔴 High
+                    </span>
+                {% elif t.priority == 'Medium' %}
+                    <span class="text-xs px-3 py-1 rounded-full bg-amber-100 text-amber-700 font-semibold">
+                        🟠 Medium
+                    </span>
+                {% else %}
+                    <span class="text-xs px-3 py-1 rounded-full bg-blue-100 text-blue-700 font-semibold">
+                        🔵 Low
+                    </span>
+                {% endif %}
+            </div>
+        </div>
+
+        {% set status_color = {
+            'Open': 'bg-slate-200 text-slate-700',
+            'In Progress': 'bg-indigo-100 text-indigo-700',
+            'On Hold': 'bg-yellow-100 text-yellow-700',
+            'Resolved': 'bg-emerald-100 text-emerald-700',
+            'Reopened': 'bg-rose-100 text-rose-700',
+            'Closed': 'bg-green-200 text-green-800'
+        }[status] %}
+
+        <span class="px-4 py-1 rounded-full text-xs font-semibold {{ status_color }}">
+            {{ status }}
+        </span>
+    </div>
+
+    <p class="text-slate-600 text-sm mb-6">
+        {{ t.description }}
+    </p>
+
+    <!-- ================= ADMIN VIEW ================= -->
+    {% if role == "admin" %}
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-600 mb-6">
+        <p><strong>ID:</strong> {{ t.ticket_id }}</p>
+        <p><strong>Department:</strong> {{ t.department }}</p>
+        <p><strong>Created:</strong> {{ t.created_at }}</p>
+        <p><strong>Username:</strong> {{ t.username }}</p>
+        <p><strong>Email:</strong> {{ t.email }}</p>
+        <p>
+            <strong>Assigned Team:</strong>
+            {% if t.assigned_team_id %}
+                <span class="text-emerald-600 font-semibold">
+                    {{ t.assigned_team_id }} ({{ t.assigned_team_department }})
+                </span>
+            {% else %}
+                <span class="text-rose-500 font-medium">
+                    Unassigned
+                </span>
+            {% endif %}
+        </p>
+    </div>
+
+    {% if not t.assigned_team_id %}
+    <form method="POST" action="/assign_ticket" class="flex gap-4 items-center mt-4">
+        <input type="hidden" name="ticket_id" value="{{ t.ticket_id }}">
+
+        <label for="team-select-{{ t.ticket_id }}" class="sr-only">
+            Assign ticket {{ t.ticket_id }} to team
+        </label>
+
+        <select id="team-select-{{ t.ticket_id }}"
+                name="team_id"
+                required
+                class="px-4 py-2 rounded-xl border text-sm">
+            <option value="">Assign to Team</option>
+            {% for team in teams %}
+                <option value="{{ team.team_id }}">
+                    {{ team.team_id }} ({{ team.department }})
+                </option>
+            {% endfor %}
+        </select>
+
+        <button type="submit"
+                class="px-4 py-2 rounded-xl bg-indigo-600 text-white text-sm">
+            Assign
+        </button>
+    </form>
+    {% endif %}
+
+    <!-- ================= TEAM VIEW ================= -->
+    {% elif role in ["team_admin", "team_member"] %}
+
+    <div class="text-sm text-slate-600 mb-6">
+        <p><strong>ID:</strong> {{ t.ticket_id }}</p>
+        <p><strong>Department:</strong> {{ t.department }}</p>
+        <p><strong>Created:</strong> {{ t.created_at }}</p>
+        <p><strong>Username:</strong> {{ t.username }}</p>
+        <p><strong>Email:</strong> {{ t.email }}</p>
+    </div>
+
+    {% if status != "Closed" %}
+    <form method="POST" action="/update_status/{{ t.ticket_id }}" class="space-y-6 mt-4">
+
+        <!-- Accessible Label -->
+        <label for="status-{{ t.ticket_id }}" class="sr-only">
+            Change status for ticket {{ t.ticket_id }}
+        </label>
+
+        <select id="status-{{ t.ticket_id }}"
+                name="status"
+                onchange="toggleClosureReason('{{ t.ticket_id }}')"
+                class="w-full border rounded-2xl p-3 text-sm">
+
+            <option value="">Select Status</option>
+
+            {% for option in allowed_transitions[status] %}
+                <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+        </select>
+
+        <div id="closure-section-{{ t.ticket_id }}" class="hidden space-y-3">
+
+            <label for="closure-{{ t.ticket_id }}" class="sr-only">
+                Closure reason for ticket {{ t.ticket_id }}
+            </label>
+
+            <select id="closure-{{ t.ticket_id }}"
+                    name="closure_reason"
+                    onchange="toggleOtherReason('{{ t.ticket_id }}')"
+                    class="w-full border rounded-2xl p-3 text-sm">
+
+                <option value="">Select Closure Reason</option>
+
+                {% for reason in direct_close_reasons %}
+                    <option value="{{ reason }}">{{ reason }}</option>
+                {% endfor %}
+            </select>
+
+            <!-- Optional "Other" textarea -->
+            <textarea id="other-reason-{{ t.ticket_id }}"
+                    name="other_reason"
+                    class="hidden w-full border rounded-2xl p-3 text-sm"
+                    placeholder="Enter custom reason..."></textarea>
+
+        </div>
+
+        <button type="submit"
+                class="px-6 py-3 rounded-2xl 
+                    bg-gradient-to-r from-blue-600 to-indigo-600 
+                    text-white text-sm font-semibold">
+            Update Status
+        </button>
+
+    </form>
+    {% endif %}
+    <!-- ================= USER VIEW ================= -->
+    {% else %}
+
+    <div class="text-sm text-slate-600 mb-6">
+        <p><strong>ID:</strong> {{ t.ticket_id }}</p>
+        <p><strong>Created:</strong> {{ t.created_at }}</p>
+    </div>
+
+    {% if status == "Resolved" %}
+    <div class="mt-6 p-6 bg-emerald-50 rounded-2xl border border-emerald-200">
+        <p class="text-sm font-medium mb-4">
+            Has your issue been resolved?
+        </p>
+
+        <form method="POST"
+              action="/confirm_resolution/{{ t.ticket_id }}"
+              class="flex gap-4">
+
+            <button name="action"
+                    value="confirm"
+                    class="px-5 py-2 rounded-xl text-sm font-medium
+                           bg-emerald-500 text-white">
+                Confirm
+            </button>
+
+            <button name="action"
+                    value="reopen"
+                    class="px-5 py-2 rounded-xl text-sm font-medium
+                           bg-rose-500 text-white">
+                Reopen
+            </button>
+        </form>
+    </div>
+    {% endif %}
+
+    {% endif %}
+
+</div>
+
+{% endfor %}
+
+{% if tickets|length == 0 %}
+<div class="bg-white p-12 rounded-3xl text-center shadow border">
+    <p class="text-slate-500 text-sm">
+        📭 No tickets found matching your criteria.
+    </p>
+</div>
+{% endif %}
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+{% endblock %}

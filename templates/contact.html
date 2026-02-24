@@ -1,0 +1,289 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="relative text-center py-28 overflow-hidden">
+
+    <!-- Background Glow -->
+    <div class="absolute inset-0 -z-10">
+        <div class="absolute top-[-120px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] 
+                    bg-blue-500/20 rounded-full blur-3xl"></div>
+    </div>
+
+    <h1 class="text-5xl font-extrabold mb-6">
+        <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            Contact ResolveX
+        </span>
+    </h1>
+
+    <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+        Have questions about ResolveX or interested in exploring
+        AI-powered ticket automation? We'd love to hear from you.
+    </p>
+
+</section>
+
+
+<!-- CONTACT SECTION -->
+<section class="py-28">
+
+    <div class="grid md:grid-cols-2 gap-16 items-start">
+
+        <!-- CONTACT FORM -->
+        <div class="bg-white p-12 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
+
+            <h2 class="text-3xl font-bold mb-8 text-blue-600">
+                Send a Message
+            </h2>
+
+            <form class="space-y-8">
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">
+                        Full Name
+                    </label>
+                    <input type="text"
+                           class="w-full px-5 py-4 border border-slate-300 rounded-xl 
+                                  focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
+                                  focus:outline-none transition duration-200"
+                           placeholder="Enter your name">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">
+                        Email Address
+                    </label>
+                    <input type="email"
+                           class="w-full px-5 py-4 border border-slate-300 rounded-xl 
+                                  focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 
+                                  focus:outline-none transition duration-200"
+                           placeholder="Enter your email">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">
+                        Message
+                    </label>
+                    <textarea rows="5"
+                              class="w-full px-5 py-4 border border-slate-300 rounded-xl 
+                                     focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
+                                     focus:outline-none transition duration-200"
+                              placeholder="Write your message here..."></textarea>
+                </div>
+
+                <button type="submit"
+                        class="w-full py-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 
+                               text-white font-semibold shadow-lg hover:shadow-xl 
+                               hover:scale-[1.02] transition duration-300">
+                    Send Message
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- CONTACT INFO -->
+        <div class="space-y-8">
+
+            <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
+                <h3 class="text-xl font-semibold mb-3 text-blue-600">
+                    Project Title
+                </h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    AI-Powered Ticket Creation and Categorization
+                    from User Input
+                </p>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
+                <h3 class="text-xl font-semibold mb-3 text-indigo-600">
+                    Focus Area
+                </h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Natural Language Processing, Automated Ticket
+                    Classification, Named Entity Recognition,
+                    and Workflow Automation.
+                </p>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
+                <h3 class="text-xl font-semibold mb-3 text-blue-600">
+                    Contact Email
+                </h3>
+                <p class="text-slate-600 text-sm">
+                    support@resolvex.ai
+                </p>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
+                <h3 class="text-xl font-semibold mb-3 text-indigo-600">
+                    Availability
+                </h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Open for project discussions, demonstrations,
+                    collaboration opportunities, and internship presentations.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FAQ SECTION -->
+<section class="py-28">
+
+    <h2 class="text-4xl font-bold text-center mb-16">
+        Frequently Asked Questions
+    </h2>
+
+    <div class="max-w-4xl mx-auto space-y-6">
+
+        <!-- FAQ Item -->
+        <div class="bg-white rounded-2xl shadow-md">
+            <button onclick="toggleFAQ(1)" 
+                    class="w-full text-left p-6 font-semibold text-lg flex justify-between items-center">
+                How does ResolveX categorize tickets automatically?
+                <span id="icon-1">+</span>
+            </button>
+            <div id="faq-1" class="hidden px-6 pb-6 text-slate-600">
+                ResolveX uses Natural Language Processing (NLP) models
+                trained on historical ticket data to classify user input
+                into predefined departments such as Hardware, Software,
+                or Network Support.
+            </div>
+        </div>
+
+        <!-- FAQ Item -->
+        <div class="bg-white rounded-2xl shadow-md">
+            <button onclick="toggleFAQ(2)" 
+                    class="w-full text-left p-6 font-semibold text-lg flex justify-between items-center">
+                How is ticket priority determined?
+                <span id="icon-2">+</span>
+            </button>
+            <div id="faq-2" class="hidden px-6 pb-6 text-slate-600">
+                Priority is assigned using a hybrid approach that combines
+                keyword-based rules (e.g., outage, critical, down)
+                with machine learning models trained to detect urgency.
+            </div>
+        </div>
+
+        <!-- FAQ Item -->
+        <div class="bg-white rounded-2xl shadow-md">
+            <button onclick="toggleFAQ(3)" 
+                    class="w-full text-left p-6 font-semibold text-lg flex justify-between items-center">
+                Does ResolveX replace human support agents?
+                <span id="icon-3">+</span>
+            </button>
+            <div id="faq-3" class="hidden px-6 pb-6 text-slate-600">
+                No. ResolveX automates the initial triage process.
+                Human agents remain responsible for resolving tickets
+                and handling complex support scenarios.
+            </div>
+        </div>
+
+        <!-- FAQ Item -->
+        <div class="bg-white rounded-2xl shadow-md">
+            <button onclick="toggleFAQ(4)" 
+                    class="w-full text-left p-6 font-semibold text-lg flex justify-between items-center">
+                Is the system scalable for enterprise environments?
+                <span id="icon-4">+</span>
+            </button>
+            <div id="faq-4" class="hidden px-6 pb-6 text-slate-600">
+                Yes. The architecture is designed with layered processing
+                and structured workflow governance, making it suitable
+                for scalable and enterprise-grade implementations.
+            </div>
+        </div>
+        <!-- FAQ Item -->
+        <div class="bg-white rounded-2xl shadow-md">
+            <button onclick="toggleFAQ(3)" 
+                    class="w-full text-left p-6 font-semibold text-lg flex justify-between items-center">
+                What kind of input can ResolveX process?
+                <span id="icon-3">+</span>
+            </button>
+            <div id="faq-3" class="hidden px-6 pb-6 text-slate-600">
+                ResolveX can process free-form text submitted through web forms,
+                chat-style inputs, or email-based ticket requests. The system
+                analyzes natural language and extracts structured information automatically.
+            </div>
+        </div>
+
+        <!-- FAQ Item -->
+        <div class="bg-white rounded-2xl shadow-md">
+            <button onclick="toggleFAQ(4)" 
+                    class="w-full text-left p-6 font-semibold text-lg flex justify-between items-center">
+                Can ResolveX integrate with existing ticketing systems?
+                <span id="icon-4">+</span>
+            </button>
+            <div id="faq-4" class="hidden px-6 pb-6 text-slate-600">
+                The architecture is designed to be modular. The AI ticket generation
+                engine can be integrated with external systems through APIs or
+                structured JSON outputs.
+            </div>
+        </div>
+
+        <!-- FAQ Item -->
+        <div class="bg-white rounded-2xl shadow-md">
+            <button onclick="toggleFAQ(5)" 
+                    class="w-full text-left p-6 font-semibold text-lg flex justify-between items-center">
+                How accurate is the AI classification model?
+                <span id="icon-5">+</span>
+            </button>
+            <div id="faq-5" class="hidden px-6 pb-6 text-slate-600">
+                Model accuracy depends on dataset quality and training volume.
+                The system is designed to continuously improve through retraining
+                and evaluation against real ticket data.
+            </div>
+        </div>
+
+        <!-- FAQ Item -->
+        <div class="bg-white rounded-2xl shadow-md">
+            <button onclick="toggleFAQ(6)" 
+                    class="w-full text-left p-6 font-semibold text-lg flex justify-between items-center">
+                Does ResolveX support role-based access control?
+                <span id="icon-6">+</span>
+            </button>
+            <div id="faq-6" class="hidden px-6 pb-6 text-slate-600">
+                Yes. The system enforces strict role-based permissions,
+                distinguishing between user and administrator actions
+                to maintain governance and workflow integrity.
+            </div>
+        </div>
+
+        <!-- FAQ Item -->
+        <div class="bg-white rounded-2xl shadow-md">
+            <button onclick="toggleFAQ(7)" 
+                    class="w-full text-left p-6 font-semibold text-lg flex justify-between items-center">
+                Is the system suitable for enterprise environments?
+                <span id="icon-7">+</span>
+            </button>
+            <div id="faq-7" class="hidden px-6 pb-6 text-slate-600">
+                Yes. With layered architecture, workflow enforcement,
+                and AI-driven automation, ResolveX is designed to simulate
+                enterprise-grade ticket management systems.
+            </div>
+        </div>
+
+
+    </div>
+    
+
+</section>
+
+<!-- FAQ SCRIPT -->
+<script>
+    function toggleFAQ(id) {
+        const content = document.getElementById("faq-" + id);
+        const icon = document.getElementById("icon-" + id);
+
+        content.classList.toggle("hidden");
+        icon.textContent = content.classList.contains("hidden") ? "+" : "−";
+    }
+</script>
+
+
+{% endblock %}

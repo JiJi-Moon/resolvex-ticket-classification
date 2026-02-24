@@ -1,0 +1,256 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="relative text-center py-28 overflow-hidden">
+
+    <div class="absolute inset-0 -z-10">
+        <div class="absolute top-[-120px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] 
+                    bg-indigo-500/20 rounded-full blur-3xl"></div>
+    </div>
+
+    <h1 class="text-5xl font-extrabold mb-6">
+        <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            System Architecture
+        </span>
+    </h1>
+
+    <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+        ResolveX follows a layered architecture combining AI-driven
+        intelligence with structured workflow governance to automate
+        enterprise-grade ticket management.
+    </p>
+
+</section>
+
+
+<!-- HIGH LEVEL ARCHITECTURE -->
+<section class="py-28">
+
+    <h2 class="text-4xl font-bold text-center mb-16">
+        🏗 High-Level Architecture
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-12">
+
+        <div class="bg-white p-10 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300">
+            <h3 class="text-xl font-semibold mb-4 text-blue-600">
+                1. Presentation Layer
+            </h3>
+            <p class="text-slate-600 leading-relaxed">
+                Web-based interface built using Flask and Tailwind CSS.
+                Enables user interaction, ticket submission, and
+                structured visualization of workflow status.
+            </p>
+        </div>
+
+        <div class="bg-white p-10 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300">
+            <h3 class="text-xl font-semibold mb-4 text-indigo-600">
+                2. AI Processing Layer
+            </h3>
+            <p class="text-slate-600 leading-relaxed">
+                NLP models analyze user input, perform classification,
+                extract entities, and determine intelligent priority levels.
+            </p>
+        </div>
+
+        <div class="bg-white p-10 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300">
+            <h3 class="text-xl font-semibold mb-4 text-blue-600">
+                3. Ticket Generation Engine
+            </h3>
+            <p class="text-slate-600 leading-relaxed">
+                Converts AI outputs into structured JSON objects mapping
+                title, description, department, and priority fields.
+            </p>
+        </div>
+
+        <div class="bg-white p-10 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300">
+            <h3 class="text-xl font-semibold mb-4 text-indigo-600">
+                4. Workflow & Governance Layer
+            </h3>
+            <p class="text-slate-600 leading-relaxed">
+                Enforces lifecycle transitions (Open → In Progress → 
+                Resolved → Closed) with strict role-based validation.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- AI PIPELINE -->
+<section class="relative py-28 overflow-hidden bg-slate-100">
+
+    <h2 class="text-4xl font-bold text-center mb-16">
+        🤖 AI Processing Pipeline
+    </h2>
+
+    <div class="max-w-5xl mx-auto space-y-8">
+
+        <div class="bg-white p-8 rounded-2xl shadow-md">
+            <h3 class="text-lg font-semibold text-blue-600">Step 1: Input Preprocessing</h3>
+            <p class="text-slate-600 mt-2">
+                Cleans and normalizes text by removing greetings,
+                noise, formatting issues, and irrelevant content.
+            </p>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl shadow-md">
+            <h3 class="text-lg font-semibold text-indigo-600">Step 2: Text Classification</h3>
+            <p class="text-slate-600 mt-2">
+                NLP classification models assign tickets to predefined
+                departments using a fine-tuned BERT model.
+            </p>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl shadow-md">
+            <h3 class="text-lg font-semibold text-blue-600">Step 3: Named Entity Recognition</h3>
+            <p class="text-slate-600 mt-2">
+                Extracts key entities including services, systems, and error codes.
+            </p>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl shadow-md">
+            <h3 class="text-lg font-semibold text-indigo-600">Step 4: Hybrid Priority Assignment</h3>
+            <p class="text-slate-600 mt-2">
+                Combines rule-based keyword detection and tuned Linear SVM
+                model to determine urgency level.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DEPARTMENT CLASSIFICATION EVALUATION -->
+<section class="py-28 bg-slate-50">
+
+    <h2 class="text-4xl font-bold text-center mb-6">
+        📊 Department Classification Model Evaluation
+    </h2>
+
+    <p class="text-center text-slate-600 mb-12">
+        BERT-based multi-class classification performance
+    </p>
+
+    <div class="max-w-6xl mx-auto space-y-10">
+
+        <div class="bg-white p-10 rounded-2xl shadow-md text-center">
+            <h3 class="text-xl font-semibold text-indigo-600 mb-2">
+                Overall Accuracy
+            </h3>
+            <p class="text-5xl font-bold text-slate-800">
+                87.42%
+            </p>
+        </div>
+
+        <div class="bg-white p-10 rounded-2xl shadow-md overflow-x-auto">
+            <h3 class="text-xl font-semibold mb-6 text-blue-600">
+                Classification Report
+            </h3>
+
+            <table class="min-w-full text-sm text-left">
+                <thead class="border-b">
+                    <tr>
+                        <th class="py-2">Class</th>
+                        <th>Precision</th>
+                        <th>Recall</th>
+                        <th>F1-score</th>
+                        <th>Support</th>
+                    </tr>
+                </thead>
+                <tbody class="text-slate-600 space-y-2">
+                    <tr><td>Billing and Payments</td><td>0.91</td><td>0.89</td><td>0.90</td><td>614</td></tr>
+                    <tr><td>Customer Service</td><td>0.82</td><td>0.85</td><td>0.83</td><td>850</td></tr>
+                    <tr><td>General Inquiry</td><td>0.86</td><td>0.79</td><td>0.82</td><td>84</td></tr>
+                    <tr><td>Human Resources</td><td>0.88</td><td>0.84</td><td>0.86</td><td>124</td></tr>
+                    <tr><td>IT Support</td><td>0.85</td><td>0.83</td><td>0.84</td><td>704</td></tr>
+                    <tr><td>Product Support</td><td>0.84</td><td>0.86</td><td>0.85</td><td>1131</td></tr>
+                    <tr><td>Returns and Exchanges</td><td>0.87</td><td>0.81</td><td>0.84</td><td>297</td></tr>
+                    <tr><td>Sales and Pre-Sales</td><td>0.90</td><td>0.85</td><td>0.87</td><td>186</td></tr>
+                    <tr><td>Service Outages and Maintenance</td><td>0.92</td><td>0.90</td><td>0.91</td><td>236</td></tr>
+                    <tr><td>Technical Support</td><td>0.88</td><td>0.91</td><td>0.89</td><td>1705</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PRIORITY MODEL EVALUATION -->
+<section class="py-28">
+
+    <h2 class="text-4xl font-bold text-center mb-6">
+        ⚡ Priority Classification Model Evaluation
+    </h2>
+
+    <p class="text-center text-slate-600 mb-12">
+        Tuned Linear SVM (Best Parameter: C = 2)
+    </p>
+
+    <div class="max-w-5xl mx-auto space-y-10">
+
+        <div class="bg-white p-10 rounded-2xl shadow-md text-center">
+            <h3 class="text-xl font-semibold text-blue-600 mb-2">
+                Final Accuracy
+            </h3>
+            <p class="text-5xl font-bold text-slate-800">
+                89.24%
+            </p>
+        </div>
+
+        <div class="bg-white p-10 rounded-2xl shadow-md overflow-x-auto">
+            <h3 class="text-xl font-semibold mb-6 text-indigo-600">
+                Classification Report
+            </h3>
+
+            <table class="min-w-full text-sm text-left">
+                <thead class="border-b">
+                    <tr>
+                        <th class="py-2">Class</th>
+                        <th>Precision</th>
+                        <th>Recall</th>
+                        <th>F1-score</th>
+                        <th>Support</th>
+                    </tr>
+                </thead>
+                <tbody class="text-slate-600">
+                    <tr><td>High</td><td>0.90</td><td>0.91</td><td>0.90</td><td>2303</td></tr>
+                    <tr><td>Low</td><td>0.87</td><td>0.85</td><td>0.86</td><td>1203</td></tr>
+                    <tr><td>Medium</td><td>0.90</td><td>0.89</td><td>0.89</td><td>2425</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ARCHITECTURE SUMMARY -->
+<section class="relative py-28 rounded-2xl overflow-hidden">
+
+    <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600"></div>
+
+    <div class="relative z-10 text-white text-center">
+
+        <h2 class="text-4xl font-bold mb-6">
+            Intelligent Automation with Structured Governance
+        </h2>
+
+        <p class="max-w-3xl mx-auto text-lg opacity-90">
+            ResolveX integrates AI intelligence with enterprise-style
+            lifecycle enforcement to deliver efficient, scalable,
+            and reliable ticket management systems.
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}

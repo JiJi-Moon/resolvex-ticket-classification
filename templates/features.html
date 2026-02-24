@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="relative text-center py-28 overflow-hidden">
+
+    <!-- Background Glow -->
+    <div class="absolute inset-0 -z-10">
+        <div class="absolute top-[-120px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] 
+                    bg-blue-500/20 rounded-full blur-3xl"></div>
+    </div>
+
+    <h1 class="text-5xl font-extrabold mb-6">
+        <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            Platform Features
+        </span>
+    </h1>
+
+    <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+        ResolveX combines AI-driven automation with structured workflow
+        governance to deliver intelligent and scalable IT ticket processing.
+    </p>
+
+</section>
+
+
+<!-- AI INTELLIGENCE ENGINE -->
+<section class="py-28">
+
+    <h2 class="text-4xl font-bold text-center mb-16">
+        🤖 AI Intelligence Engine
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-12">
+
+        <div class="bg-white p-10 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300">
+            <h3 class="text-xl font-semibold mb-4 text-blue-600">
+                Automated Ticket Creation
+            </h3>
+            <p class="text-slate-600 leading-relaxed">
+                Converts unstructured user input from chat, email, or web forms
+                into structured ticket fields including title, description,
+                department classification, and priority.
+            </p>
+        </div>
+
+        <div class="bg-white p-10 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300">
+            <h3 class="text-xl font-semibold mb-4 text-indigo-600">
+                Intelligent Categorization
+            </h3>
+            <p class="text-slate-600 leading-relaxed">
+                Uses NLP-based classification models to accurately assign
+                tickets to predefined departments such as Hardware,
+                Software, Network, or Application Support.
+            </p>
+        </div>
+
+        <div class="bg-white p-10 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300">
+            <h3 class="text-xl font-semibold mb-4 text-blue-600">
+                Named Entity Recognition (NER)
+            </h3>
+            <p class="text-slate-600 leading-relaxed">
+                Extracts key entities including usernames, machine names,
+                affected services, and error codes from free-form input.
+            </p>
+        </div>
+
+        <div class="bg-white p-10 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300">
+            <h3 class="text-xl font-semibold mb-4 text-indigo-600">
+                Hybrid Priority Detection
+            </h3>
+            <p class="text-slate-600 leading-relaxed">
+                Combines rule-based keyword analysis with machine learning
+                models to determine urgency and impact level.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- WORKFLOW & GOVERNANCE -->
+<section class="relative py-28 overflow-hidden">
+
+    <div class="absolute inset-0 bg-gradient-to-r from-slate-100 to-slate-200"></div>
+
+    <div class="relative z-10">
+
+        <h2 class="text-4xl font-bold text-center mb-16">
+            🔁 Workflow & Governance
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-12">
+
+            <div class="bg-white p-10 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300">
+                <h3 class="text-xl font-semibold mb-4">
+                    Structured Lifecycle Management
+                </h3>
+                <p class="text-slate-600 leading-relaxed">
+                    Enforces defined ticket state transitions such as
+                    Open → In Progress → Resolved → Closed
+                    to ensure operational consistency and accountability.
+                </p>
+            </div>
+
+            <div class="bg-white p-10 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300">
+                <h3 class="text-xl font-semibold mb-4">
+                    Role-Based Access Control
+                </h3>
+                <p class="text-slate-600 leading-relaxed">
+                    Distinct user and administrator permissions
+                    provide secure and controlled workflow operations.
+                </p>
+            </div>
+
+            <div class="bg-white p-10 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300">
+                <h3 class="text-xl font-semibold mb-4">
+                    Resolution Confirmation Loop
+                </h3>
+                <p class="text-slate-600 leading-relaxed">
+                    Users confirm resolution or reopen tickets,
+                    ensuring transparency and feedback-driven closure.
+                </p>
+            </div>
+
+            <div class="bg-white p-10 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300">
+                <h3 class="text-xl font-semibold mb-4">
+                    Controlled Direct Closure
+                </h3>
+                <p class="text-slate-600 leading-relaxed">
+                    Administrators can directly close tickets with
+                    mandatory closure reasons to maintain governance.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- BUSINESS IMPACT -->
+<section class="py-28">
+
+    <h2 class="text-4xl font-bold text-center mb-16">
+        📈 Business Impact
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-12 text-center">
+
+        <div class="bg-white p-10 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300">
+            <h3 class="text-3xl font-bold text-blue-600 mb-4">
+                Reduced Triage Time
+            </h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+                Automates the initial ticket processing stage,
+                significantly decreasing manual workload.
+            </p>
+        </div>
+
+        <div class="bg-white p-10 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300">
+            <h3 class="text-3xl font-bold text-indigo-600 mb-4">
+                Improved Accuracy
+            </h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+                Minimizes misrouting and incorrect priority assignment,
+                enhancing operational efficiency.
+            </p>
+        </div>
+
+        <div class="bg-white p-10 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300">
+            <h3 class="text-3xl font-bold text-blue-600 mb-4">
+                Scalable Support
+            </h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+                Enables efficient handling of growing support volumes
+                without proportional manpower increase.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
