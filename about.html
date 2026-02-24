@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="relative text-center py-28 overflow-hidden">
+
+    <!-- Background Glow -->
+    <div class="absolute inset-0 -z-10">
+        <div class="absolute top-[-120px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] 
+                    bg-indigo-500/20 rounded-full blur-3xl"></div>
+    </div>
+
+    <h1 class="text-5xl font-extrabold mb-6 leading-tight">
+        <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            About ResolveX
+        </span>
+    </h1>
+
+    <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+        ResolveX is an AI-powered system designed to automate the
+        initial phase of IT ticket management by intelligently
+        transforming unstructured user input into structured service tickets.
+    </p>
+
+</section>
+
+
+<!-- VISION SECTION -->
+<section class="py-24">
+
+    <div class="bg-white p-12 rounded-2xl shadow-md hover:shadow-xl transition duration-300 max-w-5xl mx-auto">
+
+        <h2 class="text-3xl font-bold mb-6 text-blue-600">
+            Our Vision
+        </h2>
+
+        <div class="space-y-6 text-slate-700 leading-relaxed text-lg">
+            <p>
+                Modern IT support teams handle thousands of requests daily.
+                Manual ticket categorization and priority assignment
+                slow down workflows and increase operational overhead.
+            </p>
+
+            <p>
+                ResolveX aims to streamline this process by introducing
+                intelligent automation at the very first stage of ticket creation.
+                By leveraging Natural Language Processing (NLP),
+                the system understands user intent, extracts relevant details,
+                and structures tickets automatically.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- WHY AI SECTION -->
+<section class="py-28">
+
+    <h2 class="text-4xl font-bold text-center mb-16">
+        Why AI-Driven Automation?
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-10">
+
+        <div class="bg-white p-10 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300 text-center">
+            <div class="text-4xl mb-4">⚡</div>
+            <h3 class="text-lg font-semibold mb-3">
+                Faster Triage
+            </h3>
+            <p class="text-slate-600 text-sm">
+                Automated classification reduces the time required
+                to route tickets to the appropriate department.
+            </p>
+        </div>
+
+        <div class="bg-white p-10 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300 text-center">
+            <div class="text-4xl mb-4">🎯</div>
+            <h3 class="text-lg font-semibold mb-3">
+                Improved Accuracy
+            </h3>
+            <p class="text-slate-600 text-sm">
+                Machine learning models minimize misclassification
+                and enhance priority detection.
+            </p>
+        </div>
+
+        <div class="bg-white p-10 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300 text-center">
+            <div class="text-4xl mb-4">📈</div>
+            <h3 class="text-lg font-semibold mb-3">
+                Scalable Operations
+            </h3>
+            <p class="text-slate-600 text-sm">
+                AI-powered systems can process large volumes of
+                requests without increasing manpower.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DIFFERENTIATOR SECTION -->
+<section class="relative py-28 overflow-hidden rounded-2xl">
+
+    <!-- Background Gradient -->
+    <div class="absolute inset-0 bg-gradient-to-r from-slate-100 to-slate-200"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto bg-white/80 backdrop-blur-md p-12 rounded-2xl shadow-lg">
+
+        <h2 class="text-3xl font-bold mb-8 text-center text-indigo-600">
+            What Makes ResolveX Different?
+        </h2>
+
+        <div class="space-y-6 text-slate-700 leading-relaxed text-lg">
+
+            <p>
+                Unlike traditional ticketing platforms that rely solely on
+                manual data entry, ResolveX integrates a hybrid AI pipeline
+                combining text classification, named entity recognition,
+                and rule-based logic to generate structured tickets instantly.
+            </p>
+
+            <p>
+                The system not only categorizes issues but also extracts
+                critical entities such as user details, affected services,
+                and error messages — enabling smarter support workflows.
+            </p>
+
+            <p>
+                With built-in role-based lifecycle enforcement,
+                ResolveX ensures governance, accountability,
+                and controlled workflow transitions.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
