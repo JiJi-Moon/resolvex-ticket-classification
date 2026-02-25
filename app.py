@@ -6,6 +6,7 @@ import torch
 from datetime import datetime
 from transformers import BertTokenizerFast, BertForSequenceClassification
 from keybert import KeyBERT
+import os
 
 # ✅ IMPORT DB LAYER
 from db_functions import *
@@ -639,4 +640,5 @@ def logout():
 if __name__ == "__main__":
 
     app.run(host="0.0.0.0", port=5000)
+
 
