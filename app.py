@@ -2,9 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 import uuid
 import re
 import pickle
-import torch
 from datetime import datetime
-from transformers import BertTokenizerFast, BertForSequenceClassification
 from keybert import KeyBERT
 import os
 
@@ -54,18 +52,11 @@ DIRECT_CLOSE_REASONS = [
 # LOAD AI MODELS
 # ======================================
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 kw_model = KeyBERT(model="all-MiniLM-L6-v2")
 
-dept_tokenizer = BertTokenizerFast.from_pretrained("./ticket_classification_model")
-dept_model = BertForSequenceClassification.from_pretrained(
-    "./ticket_classification_model"
-).to(device)
-dept_model.eval()
-
-with open("./ticket_classification_model/label_encoder.pkl", "rb") as f:
-    le_dept = pickle.load(f)
+with open("./ticket_classification_model/ticket_classifier.model", "rb") as f:
+    dept_model = pickle.load(f)
 
 with open("./ticket_priority_model/priority_model.pkl", "rb") as f:
     priority_model = pickle.load(f)
@@ -122,22 +113,18 @@ def generate_description(email_body):
     return text.capitalize()
 
 
-def predict_department(text):
-    clean = strip_email_noise(text)
+def predict_priority(text):
+    text_lower = text.lower()
 
-    inputs = dept_tokenizer(
-        clean,
-        return_tensors="pt",
-        truncation=True,
-        padding=True,
-        max_length=128
-    ).to(device)
+    if any(w in text_lower for w in HIGH_PRIORITY_WORDS):
+        return "High"
 
-    with torch.no_grad():
-        outputs = dept_model(**inputs)
+    clean = re.sub(r"[^a-z0-9 ]", " ", text_lower)
+    clean = re.sub(r"\s+", " ", clean)
 
-    pred = torch.argmax(outputs.logits, dim=1).item()
-    return le_dept.inverse_transform([pred])[0]
+    vec = tfidf_priority.transform([clean])
+    pred = priority_model.predict(vec)
+    return le_priority.inverse_transform(pred)[0]
 
 
 HIGH_PRIORITY_WORDS = [
