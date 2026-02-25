@@ -615,7 +615,9 @@ def features():
 @app.route('/contact')
 def contact():
     return render_template("contact.html")
-
+@app.route("/pricing")
+def pricing():
+    return render_template("pricing.html")
 # ================= LOGOUT =================
 
 @app.route("/logout")
@@ -627,5 +629,6 @@ def logout():
 if __name__ == "__main__":
 
     app.run(host="0.0.0.0", port=5000)
+
 
 
