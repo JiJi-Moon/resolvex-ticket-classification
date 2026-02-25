@@ -11,7 +11,7 @@ from keybert import KeyBERT
 from db_functions import *
 
 app = Flask(__name__)
-app.secret_key = "super_secret_key"
+app.secret_key = os.environ.get("SECRET_KEY")
 
 # ✅ INITIALIZE DATABASE
 init_db()
@@ -639,3 +639,4 @@ def logout():
 if __name__ == "__main__":
 
     app.run(host="0.0.0.0", port=5000)
+
