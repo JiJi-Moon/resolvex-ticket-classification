@@ -133,46 +133,59 @@
     </h2>
 
     <p class="text-center text-slate-600 mb-12">
-        BERT-based multi-class classification performance
+        Fine-tuned BERT Multi-Class Classification Performance
     </p>
 
     <div class="max-w-6xl mx-auto space-y-10">
 
+        <!-- Overall Accuracy -->
         <div class="bg-white p-10 rounded-2xl shadow-md text-center">
             <h3 class="text-xl font-semibold text-indigo-600 mb-2">
-                Overall Accuracy
+                Overall Test Accuracy
             </h3>
             <p class="text-5xl font-bold text-slate-800">
-                87.42%
+                90.20%
+            </p>
+            <p class="text-slate-500 mt-2">
+                Evaluated on 9,568 test samples
             </p>
         </div>
 
+        <!-- Classification Report Table -->
         <div class="bg-white p-10 rounded-2xl shadow-md overflow-x-auto">
             <h3 class="text-xl font-semibold mb-6 text-blue-600">
-                Classification Report
+                Detailed Classification Report
             </h3>
 
             <table class="min-w-full text-sm text-left">
-                <thead class="border-b">
+                <thead class="border-b font-semibold text-slate-700">
                     <tr>
-                        <th class="py-2">Class</th>
+                        <th class="py-2">Department</th>
                         <th>Precision</th>
                         <th>Recall</th>
                         <th>F1-score</th>
                         <th>Support</th>
                     </tr>
                 </thead>
-                <tbody class="text-slate-600 space-y-2">
-                    <tr><td>Billing and Payments</td><td>0.91</td><td>0.89</td><td>0.90</td><td>614</td></tr>
-                    <tr><td>Customer Service</td><td>0.82</td><td>0.85</td><td>0.83</td><td>850</td></tr>
-                    <tr><td>General Inquiry</td><td>0.86</td><td>0.79</td><td>0.82</td><td>84</td></tr>
-                    <tr><td>Human Resources</td><td>0.88</td><td>0.84</td><td>0.86</td><td>124</td></tr>
-                    <tr><td>IT Support</td><td>0.85</td><td>0.83</td><td>0.84</td><td>704</td></tr>
-                    <tr><td>Product Support</td><td>0.84</td><td>0.86</td><td>0.85</td><td>1131</td></tr>
-                    <tr><td>Returns and Exchanges</td><td>0.87</td><td>0.81</td><td>0.84</td><td>297</td></tr>
-                    <tr><td>Sales and Pre-Sales</td><td>0.90</td><td>0.85</td><td>0.87</td><td>186</td></tr>
-                    <tr><td>Service Outages and Maintenance</td><td>0.92</td><td>0.90</td><td>0.91</td><td>236</td></tr>
-                    <tr><td>Technical Support</td><td>0.88</td><td>0.91</td><td>0.89</td><td>1705</td></tr>
+                <tbody class="text-slate-600">
+
+                    <tr><td>Access</td><td>0.92</td><td>0.93</td><td>0.92</td><td>1425</td></tr>
+                    <tr><td>Administrative Rights</td><td>0.84</td><td>0.86</td><td>0.85</td><td>352</td></tr>
+                    <tr><td>HR Support</td><td>0.90</td><td>0.89</td><td>0.89</td><td>2183</td></tr>
+                    <tr><td>Hardware</td><td>0.89</td><td>0.88</td><td>0.88</td><td>2724</td></tr>
+                    <tr><td>Internal Project</td><td>0.88</td><td>0.92</td><td>0.90</td><td>424</td></tr>
+                    <tr><td>Miscellaneous</td><td>0.87</td><td>0.88</td><td>0.87</td><td>1412</td></tr>
+                    <tr><td>Purchase</td><td>0.94</td><td>0.92</td><td>0.93</td><td>493</td></tr>
+                    <tr><td>Storage</td><td>0.92</td><td>0.93</td><td>0.92</td><td>555</td></tr>
+
+                    <tr class="border-t font-semibold text-slate-800">
+                        <td>Macro Avg</td><td>0.89</td><td>0.90</td><td>0.89</td><td>9568</td>
+                    </tr>
+
+                    <tr class="font-semibold text-slate-800">
+                        <td>Weighted Avg</td><td>0.90</td><td>0.90</td><td>0.90</td><td>9568</td>
+                    </tr>
+
                 </tbody>
             </table>
         </div>
