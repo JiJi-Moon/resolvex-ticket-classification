@@ -22,7 +22,7 @@
 
 <!-- ================= NAVBAR ================= -->
 <nav class="sticky top-0 z-50 backdrop-blur-2xl bg-white/80 border-b border-slate-200/70 shadow-lg transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between flex-wrap gap-4">
 
         <!-- LEFT: Logo -->
         <a href="/" 
@@ -32,104 +32,58 @@
         </a>
 
         <!-- CENTER: Public Links -->
-        <div class="hidden md:flex items-center space-x-8 ml-12 text-sm font-medium text-slate-700">
+        <div class="hidden md:flex items-center gap-5 text-sm font-medium text-slate-700 flex-wrap">
 
-            <a href="/" class="relative group transition hover:text-blue-600">
-                Home
-                <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 
-                             transition-all duration-300 group-hover:w-full"></span>
-            </a>
-
-            <a href="/about" class="relative group transition hover:text-blue-600">
-                About
-                <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 
-                             transition-all duration-300 group-hover:w-full"></span>
-            </a>
-
-            <a href="/features" class="relative group transition hover:text-blue-600">
-                Features
-                <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 
-                             transition-all duration-300 group-hover:w-full"></span>
-            </a>
-
-            <a href="/architecture" class="relative group transition hover:text-blue-600">
-                Architecture
-                <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 
-                             transition-all duration-300 group-hover:w-full"></span>
-            </a>
-
-            <a href="/contact" class="relative group transition hover:text-blue-600">
-                Contact
-                <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 
-                             transition-all duration-300 group-hover:w-full"></span>
-            </a>
+            <a href="/" class="hover:text-blue-600 transition">Home</a>
+            <a href="/about" class="hover:text-blue-600 transition">About</a>
+            <a href="/features" class="hover:text-blue-600 transition">Features</a>
+            <a href="/pricing" class="hover:text-blue-600 transition">Pricing</a>
+            <a href="/architecture" class="hover:text-blue-600 transition">Architecture</a>
+            <a href="/contact" class="hover:text-blue-600 transition">Contact</a>
 
         </div>
 
         <!-- RIGHT: Role Based Section -->
-        <div class="hidden md:flex items-center space-x-6 ml-auto text-sm font-medium text-slate-700">
+        <div class="hidden md:flex items-center gap-4 text-sm font-medium text-slate-700 flex-wrap justify-end">
 
             {% if session.get("role") %}
 
-                <a href="/dashboard" class="relative group transition hover:text-blue-600 font-semibold">
+                <a href="/dashboard" class="hover:text-blue-600 transition font-semibold">
                     Dashboard
-                    <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 
-                                 transition-all duration-300 group-hover:w-full"></span>
                 </a>
 
                 {% if session.get("role") == "user" %}
-
-                    <a href="/create_ticket" class="relative group transition hover:text-blue-600">
+                    <a href="/create_ticket" class="hover:text-blue-600 transition">
                         Create Ticket
-                        <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 
-                                     transition-all duration-300 group-hover:w-full"></span>
                     </a>
-
-                    <a href="/view_tickets" class="relative group transition hover:text-blue-600">
+                    <a href="/view_tickets" class="hover:text-blue-600 transition">
                         My Tickets
-                        <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 
-                                     transition-all duration-300 group-hover:w-full"></span>
                     </a>
 
                 {% elif session.get("role") == "admin" %}
-
-                    <a href="/view_tickets" class="relative group transition hover:text-blue-600">
+                    <a href="/view_tickets" class="hover:text-blue-600 transition">
                         All Tickets
-                        <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 
-                                     transition-all duration-300 group-hover:w-full"></span>
                     </a>
-
-                    <a href="/register_team" class="relative group transition hover:text-blue-600">
+                    <a href="/register_team" class="hover:text-blue-600 transition">
                         Register Team
-                        <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 
-                                     transition-all duration-300 group-hover:w-full"></span>
                     </a>
-
-                    <a href="/team_management" class="relative group transition hover:text-blue-600">
+                    <a href="/team_management" class="hover:text-blue-600 transition">
                         Team Management
-                        <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 
-                                     transition-all duration-300 group-hover:w-full"></span>
                     </a>
 
                 {% elif session.get("role") in ["team_admin", "team_member"] %}
-
-                    <a href="/view_tickets" class="relative group transition hover:text-blue-600">
+                    <a href="/view_tickets" class="hover:text-blue-600 transition">
                         Assigned Tickets
-                        <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 
-                                     transition-all duration-300 group-hover:w-full"></span>
                     </a>
 
                     {% if session.get("role") == "team_admin" %}
-                        <a href="/team/add_member" class="relative group transition hover:text-blue-600">
+                        <a href="/team/add_member" class="hover:text-blue-600 transition">
                             Add Member
-                            <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-600 
-                                         transition-all duration-300 group-hover:w-full"></span>
                         </a>
                     {% endif %}
-
                 {% endif %}
 
-                <!-- Username Dropdown (Restored Style) -->
+                <!-- Username Dropdown -->
                 <div class="relative user-menu-container">
                     <button onclick="toggleUserMenu()"
                             class="flex items-center space-x-2 px-4 py-2 rounded-xl 
@@ -149,19 +103,18 @@
                     </button>
 
                     <div id="userDropdown"
-                        class="hidden absolute right-0 mt-3 w-48 bg-white/95 backdrop-blur-xl shadow-2xl 
-                               rounded-2xl border border-slate-200 
-                               z-50 overflow-hidden transition-all duration-300">
+                        class="hidden absolute right-0 mt-3 w-48 bg-white shadow-2xl 
+                               rounded-2xl border border-slate-200 z-50 overflow-hidden">
 
                         <a href="{{ url_for('profile') }}"
-                           class="block px-4 py-3 hover:bg-slate-100 text-sm transition duration-200">
+                           class="block px-4 py-3 hover:bg-slate-100 text-sm">
                             👤 Profile
                         </a>
 
                         <div class="border-t border-slate-200"></div>
 
                         <a href="{{ url_for('logout') }}"
-                           class="block px-4 py-3 hover:bg-red-50 text-red-500 text-sm transition duration-200">
+                           class="block px-4 py-3 hover:bg-red-50 text-red-500 text-sm">
                             🚪 Logout
                         </a>
                     </div>
@@ -171,8 +124,7 @@
 
                 <a href="/login"
                    class="px-4 py-2 rounded-xl border border-slate-300 
-                          hover:border-blue-500 hover:text-blue-600 
-                          transition duration-300">
+                          hover:border-blue-500 hover:text-blue-600 transition">
                     Login
                 </a>
 
@@ -184,7 +136,9 @@
                 </a>
 
             {% endif %}
+
         </div>
+
     </div>
 </nav>
 
